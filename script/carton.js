@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ready);
+// document.addEventListener("DOMContentLoaded");
 
 // creo array
 
@@ -20,49 +20,59 @@ const lugares = [3, 3, 3, 3, 3, 3, 3, 3, 3];
 const numerosCarton = [];
 let tieneLugar;
 let numeroAleatorio;
-
+let cantNroCarton = 0;
 const carton = document.querySelector("#cartones");
 const nroCarton = Math.floor(Math.random() * 1000 + 1);
 
-carton.innerHTML = ` <div class="borde d-flex row">
+
+
+for (let i = 0; i < 10 ; i++) {
+
+  
+
+carton.innerHTML += `
+<div class="borde d-flex row">
 <h3 id="nro">Nro Carton: ${nroCarton}</h3>
 <hr>
-<div>
+<div id=${nroCarton}>
   <div class="d-flex">
-  <div id="0" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="1" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="2" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="3" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="4" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="5" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="6" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="7" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="8" class="fila d-flex justify-content-center align-items-center"></div>  
+  <div id="0" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="1" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="2" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="3" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="4" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="5" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="6" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="7" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="8" class="fila d-flex justify-content-center align-items-center text-white"></div>  
   </div>
   <div class="d-flex">
-  <div id="9" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="10" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="11" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="12" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="13" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="14" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="15" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="16" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="17" class="fila d-flex justify-content-center align-items-center"></div>  
+  <div id="9" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="10" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="11" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="12" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="13" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="14" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="15" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="16" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="17" class="fila d-flex justify-content-center align-items-center text-white"></div>  
   </div>
   <div class="d-flex">
-  <div id="18" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="19" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="20" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="21" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="22" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="23" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="24" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="25" class="fila d-flex justify-content-center align-items-center"></div>
-  <div id="26" class="fila d-flex justify-content-center align-items-center"></div>  
+  <div id="18" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="19" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="20" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="21" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="22" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="23" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="24" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="25" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="26" class="fila d-flex justify-content-center align-items-center text-white"></div>  
   </div>
 </div>
-</div>`;
+</div>
+`;
+
+}
 
 // funciones
 
@@ -92,6 +102,26 @@ const verificoLugar = (numero) => {
     tieneLugar = true;
   }
   return tieneLugar;
+};
+
+
+
+const cargoNumerosCarton = () => {
+  for (let j = 0; j < 9; j++) {
+    for (let i = 0; i < 3; i++) {
+      const valorBuscado = indInicial[i] + j;
+      existePintado = indicesPintados.some(
+        (element) => element === valorBuscado
+      );
+
+      if (!existePintado) {
+        const indice = `${i}`;
+        const valor = document.getElementById(valorBuscado);
+        valor.textContent = numerosCarton[cantNroCarton];
+        cantNroCarton++;
+      }
+    }
+  }
 };
 
 // pintoNumeros en gris
@@ -125,21 +155,21 @@ lugares.forEach((espacios, index) => {
       if (rand === 90)
         numeroAleatorio = Math.floor(Math.random() * (rand - min + 1) + min);
 
-      numeroAleatorio = Math.floor(Math.random() * (rand - min + 1) + min);
+      numeroAleatorio = Math.floor(Math.random() * (rand - min) + min);
       existe = verificoSiExiste(numeroAleatorio, numerosCarton);
     } while (existe);
-    numerosCarton.push(numeroAleatorio); 
+    numerosCarton.push(numeroAleatorio);
   }
 });
+
+//ordeno los numeros
 numerosCarton.sort((a, b) => a - b);
 
-// for (i = 0; i < 15; i++) {
-//   const numeroAleatorio = Math.floor(Math.random() * (90 - 1) + 1);
-//   numerosCarton.push(numeroAleatorio);
-//  }
+// llamo funcion cargar Numeros
+cargoNumerosCarton();
 
-// console.log(numerosCarton);
 
-// const indice = `${i}`;
-// const valor = document.getElementById(indice);
-// valor.textContent = numeroAleatorio;
+carton.addEventListener("click", (evt) => {
+
+    console.log(evt.target);
+});
