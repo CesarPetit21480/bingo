@@ -6,16 +6,16 @@
 
 .fila {
   border: solid 1px rgb(230, 225, 225);
-  width: 90px;
-  height: 98px;
+  width: 60px;
+  height: 70px;
   text-align: center;
   font-size: xx-large;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
 }
 .borde {
-  width: 50rem;
-  height: 400px;
+  width: 35rem;
+  height: 300px;
   /* background-color: rgb(27, 133, 133); */
   background: rgb(29, 175, 222);
   background: linear-gradient(
@@ -27,6 +27,11 @@
   border: solid 3px black;
 }
 
+.tamanio {
+  width: 200px;
+  height: 100px;
+}
+
 .negro {
   background-color: rgb(122, 121, 121);
 }
@@ -36,4 +41,44 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.container__li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 100px;
+  padding-right: 10px;
+  margin-right: 50px;
+  justify-content: center;
+  text-align: center;
+}
+
+.titulo {
+  animation: muevo-Izquiera-derecha 2s 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes muevo-Izquiera-derecha {
+  from {
+    transform: translateX(-300px);
+  }
+  to {
+    transform: translateX(10px);
+  }
+}
+.contenedor {
+  overflow-x: hidden;
+  max-width: 50%;
+  margin: 0 auto;
+  background: rgb(29, 78, 222);
+  background: linear-gradient(
+    90deg,
+    rgba(29, 78, 222, 1) 0%,
+    rgba(35, 133, 145, 1) 41%,
+    rgba(0, 212, 255, 1) 91%
+  );
+  opacity: 80%;
+  border-radius: 40px;
+ 
 }

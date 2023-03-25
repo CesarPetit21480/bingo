@@ -34,7 +34,7 @@ const jugadores = [];
 let numerosJugados = [];
 let nroGenerado;
 
-// funciones
+// funciones 
 
 const generoCartones = () => {
   const listaNros = [];

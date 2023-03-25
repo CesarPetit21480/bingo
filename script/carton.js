@@ -16,63 +16,13 @@
 
 indicesPintados = [];
 indInicial = [0, 9, 18];
-const lugares = [3, 3, 3, 3, 3, 3, 3, 3, 3];
-const numerosCarton = [];
+let lugares = [];
+let numerosCarton = [];
 let tieneLugar;
 let numeroAleatorio;
-let cantNroCarton = 0;
+ let cantNroCarton;
 const carton = document.querySelector("#cartones");
-const nroCarton = Math.floor(Math.random() * 1000 + 1);
-
-
-
-for (let i = 0; i < 10 ; i++) {
-
-  
-
-carton.innerHTML += `
-<div class="borde d-flex row">
-<h3 id="nro">Nro Carton: ${nroCarton}</h3>
-<hr>
-<div id=${nroCarton}>
-  <div class="d-flex">
-  <div id="0" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="1" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="2" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="3" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="4" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="5" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="6" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="7" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="8" class="fila d-flex justify-content-center align-items-center text-white"></div>  
-  </div>
-  <div class="d-flex">
-  <div id="9" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="10" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="11" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="12" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="13" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="14" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="15" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="16" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="17" class="fila d-flex justify-content-center align-items-center text-white"></div>  
-  </div>
-  <div class="d-flex">
-  <div id="18" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="19" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="20" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="21" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="22" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="23" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="24" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="25" class="fila d-flex justify-content-center align-items-center text-white"></div>
-  <div id="26" class="fila d-flex justify-content-center align-items-center text-white"></div>  
-  </div>
-</div>
-</div>
-`;
-
-}
+let nroCarton;
 
 // funciones
 
@@ -104,9 +54,9 @@ const verificoLugar = (numero) => {
   return tieneLugar;
 };
 
-
-
 const cargoNumerosCarton = () => {
+
+  console.log("Cargo Numero",nroCarton);
   for (let j = 0; j < 9; j++) {
     for (let i = 0; i < 3; i++) {
       const valorBuscado = indInicial[i] + j;
@@ -115,8 +65,8 @@ const cargoNumerosCarton = () => {
       );
 
       if (!existePintado) {
-        const indice = `${i}`;
-        const valor = document.getElementById(valorBuscado);
+        const aux = `${nroCarton}-${valorBuscado}`;
+        const valor = document.getElementById(aux);
         valor.textContent = numerosCarton[cantNroCarton];
         cantNroCarton++;
       }
@@ -124,52 +74,111 @@ const cargoNumerosCarton = () => {
   }
 };
 
-// pintoNumeros en gris
+const inicializo = () => {
+  lugares = [3, 3, 3, 3, 3, 3, 3, 3, 3];
+  numerosCarton = [];
+  indicesPintados = [];
+  cantNroCarton = 0;
+};
 
-for (let p = 0; p < 12; p++) {
-  do {
-    numerosAPintar = Math.floor(Math.random() * (27 - 1) + 1);
-  } while (verificoSiEstaNegro(numerosAPintar));
+// generando cartones
 
-  const indice = `${numerosAPintar}`;
-  const valor = document.getElementById(indice);
-  valor.classList.add("negro");
-}
+for (let i = 0; i < 6; i++) {
+  inicializo();
+  nroCarton = Math.floor(Math.random() * 1000 + 1);
+  const li = document.createElement("li");
 
-// verifico los lugares libres por decena
+  li.innerHTML += `
+<div class="borde d-flex row mt-3 me-4">
+<h3 id="nro">Nro Carton: ${nroCarton}</h3>
+<hr>
+<div id=${nroCarton}>
+  <div class="d-flex">
+  <div id="${nroCarton}-0" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-1" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-2" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-3" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-4" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-5" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-6" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-7" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-8" class="fila d-flex justify-content-center align-items-center text-white"></div>  
+  </div>
+  <div class="d-flex">
+  <div id="${nroCarton}-9" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-10" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-11" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-12" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-13" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-14" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-15" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-16" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-17" class="fila d-flex justify-content-center align-items-center text-white"></div>  
+  </div>
+  <div class="d-flex">
+  <div id="${nroCarton}-18" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-19" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-20" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-21" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-22" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-23" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-24" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-25" class="fila d-flex justify-content-center align-items-center text-white"></div>
+  <div id="${nroCarton}-26" class="fila d-flex justify-content-center align-items-center text-white"></div>  
+  </div>
+</div>
+</div>
+`;
+  carton.appendChild(li);
 
-for (let j = 0; j < 9; j++) {
-  for (let i = 0; i < 3; i++) {
-    const valorBuscado = indInicial[i] + j;
-    existePintado = indicesPintados.some((element) => element === valorBuscado);
-    if (existePintado) lugares[j] -= 1;
-  }
-}
+  // pintoNumeros en gris
 
-// Genero los numero validando los lugares que tengo
-lugares.forEach((espacios, index) => {
-  const rand = index === 0 ? 10 : (index + 1) * 10;
-  const min = index === 0 ? 1 : rand - 10;
-  for (let j = 0; j < espacios; j++) {
+  for (let p = 0; p < 12; p++) {
     do {
-      if (rand === 90)
-        numeroAleatorio = Math.floor(Math.random() * (rand - min + 1) + min);
+      numerosAPintar = Math.floor(Math.random() * (27 - 1) + 1);
+    } while (verificoSiEstaNegro(numerosAPintar));
 
-      numeroAleatorio = Math.floor(Math.random() * (rand - min) + min);
-      existe = verificoSiExiste(numeroAleatorio, numerosCarton);
-    } while (existe);
-    numerosCarton.push(numeroAleatorio);
+    const indice = `${nroCarton}-${numerosAPintar}`;
+    const valor = document.getElementById(indice);
+    valor.classList.add("negro");
   }
-});
 
-//ordeno los numeros
-numerosCarton.sort((a, b) => a - b);
+  // verifico los lugares libres por decena
 
-// llamo funcion cargar Numeros
-cargoNumerosCarton();
+  for (let j = 0; j < 9; j++) {
+    for (let i = 0; i < 3; i++) {
+      const valorBuscado = indInicial[i] + j;
+      existePintado = indicesPintados.some(
+        (element) => element === valorBuscado
+      );
+      if (existePintado) lugares[j] -= 1;
+    }
+  }
 
+  // Genero los numero validando los lugares que tengo
+  lugares.forEach((espacios, index) => {
+    const rand = index === 0 ? 10 : (index + 1) * 10;
+    const min = index === 0 ? 1 : rand - 10;
+    for (let j = 0; j < espacios; j++) {
+      do {
+        if (rand === 90)
+          numeroAleatorio = Math.floor(Math.random() * (rand - min + 1) + min);
 
-carton.addEventListener("click", (evt) => {
+        numeroAleatorio = Math.floor(Math.random() * (rand - min) + min);
+        existe = verificoSiExiste(numeroAleatorio, numerosCarton);
+      } while (existe);
+      numerosCarton.push(numeroAleatorio);
+    }
+  });
 
-    console.log(evt.target);
-});
+  //ordeno los numeros
+  numerosCarton.sort((a, b) => a - b);
+console.log("------------------------");
+  console.log("indices",indicesPintados)
+  console.log("lugares",indicesPintados)
+  console.log("nrosCarton",numerosCarton)
+  
+
+  // llamo funcion cargar Numeros
+  cargoNumerosCarton();
+}
