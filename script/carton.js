@@ -1,27 +1,14 @@
-// document.addEventListener("DOMContentLoaded");
 
-// creo array
-
-// const cartonMatriz = [2];
-// cartonMatriz[0] = [9];
-// cartonMatriz[1] = [9];
-// cartonMatriz[2] = [9];
-
-// for (let i = 0; i < 3; i++) {
-//   for (let j = 0; j < 9; j++) {
-//     cartonMatriz[i][j] = Math.floor(Math.random() * (90 - 1) + 1);
-//   }
-// }
-// console.table(cartonMatriz);
-
-indicesPintados = [];
-indInicial = [0, 9, 18];
+let indicesPintados = [];
+const indInicial = [0, 9, 18];
 let lugares = [];
+let pintadosACubrir = []
 let numerosCarton = [];
+let nrosSerie = [];
 let tieneLugar;
 let numeroAleatorio;
- let cantNroCarton;
-const carton = document.querySelector("#cartones");
+let cantNroCarton;
+const cartones = document.querySelector("#cartones");
 let nroCarton;
 
 // funciones
@@ -36,6 +23,17 @@ const verificoSiEstaNegro = (nro) => {
     return false;
   }
 };
+
+const validoPintadosDecena= (nro) => {
+
+  let puedePintar = false;
+  const aux = Math.trunc(nro / 10);
+  if (pintadosACubrir[aux] > 0 && pintadosACubrir[aux] !== 0) {
+    pintadosACubrir[aux]--;
+    puedePintar = true;
+  }
+  return puedePintar;
+}
 
 const verificoSiExiste = (numero, lista) => {
   let existe = false;
@@ -55,8 +53,7 @@ const verificoLugar = (numero) => {
 };
 
 const cargoNumerosCarton = () => {
-
-  console.log("Cargo Numero",nroCarton);
+ 
   for (let j = 0; j < 9; j++) {
     for (let i = 0; i < 3; i++) {
       const valorBuscado = indInicial[i] + j;
@@ -76,6 +73,7 @@ const cargoNumerosCarton = () => {
 
 const inicializo = () => {
   lugares = [3, 3, 3, 3, 3, 3, 3, 3, 3];
+  pintadosACubrir = [9, 8, 8, 8, 8, 8, 8, 8, 8];
   numerosCarton = [];
   indicesPintados = [];
   cantNroCarton = 0;
@@ -87,10 +85,16 @@ for (let i = 0; i < 6; i++) {
   inicializo();
   nroCarton = Math.floor(Math.random() * 1000 + 1);
   const li = document.createElement("li");
+  const valor = nroCarton;
 
   li.innerHTML += `
-<div class="borde d-flex row mt-3 me-4">
-<h3 id="nro">Nro Carton: ${nroCarton}</h3>
+<div class="borde d-flex row mt-3 me-3">
+
+<div>
+  <h3 id="nro">Nro Carton: ${nroCarton}</h3>
+  <button id="btn-${nroCarton}"  onclick="seleccionarCarton(${nroCarton})" class = "btn btn-primary btnTamaño">SELECCIONAR</button>
+</div>
+
 <hr>
 <div id=${nroCarton}>
   <div class="d-flex">
@@ -129,7 +133,12 @@ for (let i = 0; i < 6; i++) {
 </div>
 </div>
 `;
-  carton.appendChild(li);
+
+// li.addEventListener("click", () => {
+//   seleccionarCarton(valor);
+// })
+
+cartones.appendChild(li);
 
   // pintoNumeros en gris
 
@@ -166,19 +175,37 @@ for (let i = 0; i < 6; i++) {
 
         numeroAleatorio = Math.floor(Math.random() * (rand - min) + min);
         existe = verificoSiExiste(numeroAleatorio, numerosCarton);
+        estaEnlaSerie = verificoSiExiste(numeroAleatorio,nrosSerie);
       } while (existe);
       numerosCarton.push(numeroAleatorio);
+      // nrosSerie.push(numeroAleatorio)
     }
   });
 
   //ordeno los numeros
   numerosCarton.sort((a, b) => a - b);
-console.log("------------------------");
-  console.log("indices",indicesPintados)
-  console.log("lugares",indicesPintados)
-  console.log("nrosCarton",numerosCarton)
-  
+  // console.log("------------------------");
+  // console.log("indices", indicesPintados);
+  // console.log("lugares", indicesPintados);
+  // console.log("nrosCarton", numerosCarton);
+  // console.log("pintados",pintadosACubrir);
 
   // llamo funcion cargar Numeros
   cargoNumerosCarton();
+ // nrosSerie = [];
+
+  const nuevoCarton = new carton(nroCarton,numerosCarton,lugares,indicesPintados);
+  listaCartones.push(nuevoCarton); 
+
 }
+
+
+console.log("------------------------------------------------");
+console.log(listaCartones);
+
+const seleccionarCarton = (id) => {
+  const btn = document.getElementById(`btn-${id}`);
+  btn.disabled = true; 
+
+}
+
