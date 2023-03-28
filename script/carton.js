@@ -9,6 +9,8 @@ let numeroAleatorio;
 let cantNroCarton;
 const cartones = document.querySelector("#cartones");
 let nroCarton;
+let listaCartones = [];
+let cartonesJugador = [];
 
 // funciones
 
@@ -206,5 +208,13 @@ console.log(listaCartones);
 const seleccionarCarton = (id) => {
   const btn = document.getElementById(`btn-${id}`);
   btn.disabled = true;
+
+  const cartonSeleccionado = listaCartones.filter(
+    (carton) => carton.nroCarton === id
+  );
+  cartonesJugador.push(cartonSeleccionado);
+
+  console.log('cartones',cartonesJugador);
 };
+
 
