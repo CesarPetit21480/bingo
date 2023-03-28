@@ -1,8 +1,7 @@
-
 let indicesPintados = [];
 const indInicial = [0, 9, 18];
 let lugares = [];
-let pintadosACubrir = []
+let pintadosACubrir = [];
 let numerosCarton = [];
 let nrosSerie = [];
 let tieneLugar;
@@ -24,8 +23,7 @@ const verificoSiEstaNegro = (nro) => {
   }
 };
 
-const validoPintadosDecena= (nro) => {
-
+const validoPintadosDecena = (nro) => {
   let puedePintar = false;
   const aux = Math.trunc(nro / 10);
   if (pintadosACubrir[aux] > 0 && pintadosACubrir[aux] !== 0) {
@@ -33,7 +31,7 @@ const validoPintadosDecena= (nro) => {
     puedePintar = true;
   }
   return puedePintar;
-}
+};
 
 const verificoSiExiste = (numero, lista) => {
   let existe = false;
@@ -53,7 +51,6 @@ const verificoLugar = (numero) => {
 };
 
 const cargoNumerosCarton = () => {
- 
   for (let j = 0; j < 9; j++) {
     for (let i = 0; i < 3; i++) {
       const valorBuscado = indInicial[i] + j;
@@ -134,11 +131,11 @@ for (let i = 0; i < 6; i++) {
 </div>
 `;
 
-// li.addEventListener("click", () => {
-//   seleccionarCarton(valor);
-// })
+  // li.addEventListener("click", () => {
+  //   seleccionarCarton(valor);
+  // })
 
-cartones.appendChild(li);
+  cartones.appendChild(li);
 
   // pintoNumeros en gris
 
@@ -175,7 +172,7 @@ cartones.appendChild(li);
 
         numeroAleatorio = Math.floor(Math.random() * (rand - min) + min);
         existe = verificoSiExiste(numeroAleatorio, numerosCarton);
-        estaEnlaSerie = verificoSiExiste(numeroAleatorio,nrosSerie);
+        estaEnlaSerie = verificoSiExiste(numeroAleatorio, nrosSerie);
       } while (existe);
       numerosCarton.push(numeroAleatorio);
       // nrosSerie.push(numeroAleatorio)
@@ -192,20 +189,22 @@ cartones.appendChild(li);
 
   // llamo funcion cargar Numeros
   cargoNumerosCarton();
- // nrosSerie = [];
+  // nrosSerie = [];
 
-  const nuevoCarton = new carton(nroCarton,numerosCarton,lugares,indicesPintados);
-  listaCartones.push(nuevoCarton); 
-
+  const nuevoCarton = new carton(
+    nroCarton,
+    numerosCarton,
+    lugares,
+    indicesPintados
+  );
+  listaCartones.push(nuevoCarton);
 }
-
 
 console.log("------------------------------------------------");
 console.log(listaCartones);
 
 const seleccionarCarton = (id) => {
   const btn = document.getElementById(`btn-${id}`);
-  btn.disabled = true; 
-
-}
+  btn.disabled = true;
+};
 

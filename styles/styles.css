@@ -68,9 +68,9 @@ body {
   from {
     transform: translateX(-300px);
   }
-  to {
-    transform: translateX(10px);
-  }
+   to {
+    transform: translateX(20px);
+  } 
 }
 .contenedor {
   overflow-x: hidden;
@@ -89,7 +89,7 @@ body {
 }
 
 
-.jugadores {
+.tipo {
   overflow-x: hidden;
   max-width: 60%;
   margin: 0 auto;

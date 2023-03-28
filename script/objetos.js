@@ -8,9 +8,9 @@
   }
   
 class jugador {
-    constructor(nombre, carton) {
+    constructor(nombre, cartones) {
       this.nombre = nombre;
-      this.carton = carton;
+      this.cartones = cartones;
     }
   }
 

@@ -27,29 +27,36 @@
       </div>
     </div>
     <div>
-      <div id="jugadores" class="jugadores mt-5 pb-5 d-flex flex-column justify-content-center ">
-
+      <div
+        id="jugadores"
+        class="tipo mt-5 pb-5 d-flex flex-column justify-content-center"
+      >
         <h1 class="text-center">CARGA JUGADORES</h1>
 
         <form>
           <div class="d-flex flex-column">
-          <div class="form-group mx-auto">
-            <label class="text-white-50 mb-2" for="1">CARGUE JUGADOR 1</label>
-            <input type="text" class="form-control mb-2 inptTamaño" id="1" placeholder="JUGADOR 1" required>
+            <div class="form-group mx-auto">
+              <label id="nombreJugador" class="text-white-50 mb-2" for="1"></label>
+              <input
+                type="text"
+                class="form-control mb-2 inptTamaño"
+                id="juego"
+                placeholder="Nombre Jugador"
+                required
+              />
+            </div>            
+            <button
+              type="submit"
+              id="carga"
+              class="btn btn-primary mx-auto btnTamaño mt-5"
+            >
+              CARGAR
+            </button>
           </div>
-          <div class="form-group mx-auto">
-            <label class="text-white-50 mb-2" for="2">CARGUE JUGADOR 2</label>
-            <input type="text" class="form-control inptTamaño" id="2" placeholder="JUGADOR 2" required>          
-          </div>
-          <button type="submit" class="btn btn-primary mx-auto btnTamaño mt-5">CARGAR</button>
-        </div>
-        </form>
-
-
-
-
-
+        </form>      
       </div>
+
+      <div id="jugador" class="tipo"></div>
       <ul id="cartones" class="container__li"></ul>
     </div>
 
@@ -68,6 +75,5 @@
     <script src="./script/juego.js"></script>
     <script src="./script/objetos.js"></script>
     <script src="./script/carton.js"></script>
-
   </body>
 </html>
