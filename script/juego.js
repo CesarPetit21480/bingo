@@ -4,18 +4,18 @@ document.querySelector("#validar").style.display = "none";
 const nombreJugador = document.querySelector("#nombreJugador");
 
 
+if (localStorage.getItem("jugadores")) {
+  localStorage.clear();
+}
+
+
+let listaJugadores = [] ;
 let i = 1;
 
 nombreJugador.textContent = `Carga Jugador ${i}`;
 
 const nombreJugadores = document.querySelector("#carga");
 let newJugador;
-let jugadores = [];
-
-const empezarJuego = ()=>{
-  alert("hola");
-}
-
 
 nombreJugadores.addEventListener("click", (e) => {
 
@@ -33,7 +33,6 @@ nombreJugadores.addEventListener("click", (e) => {
 
   newJugador = new jugador(nombre, null);
 
-  jugadores.push(newJugador);
 
   if (cartonesJugador.length === 0) {
     Swal.fire({
@@ -48,6 +47,7 @@ nombreJugadores.addEventListener("click", (e) => {
     return;
   }
   newJugador.cartones = cartonesJugador;
+  listaJugadores.push(newJugador);
 
   Swal.fire({
     title: `jugador ${nombre} Cargado Exitosamente!!!!`,
@@ -61,8 +61,9 @@ nombreJugadores.addEventListener("click", (e) => {
   
   if (i === 2){
     
+    localStorage.setItem("jugadores",JSON.stringify(listaJugadores));
     document.querySelector("#cartones").style.display = "none";
-    const  jugadores = document.querySelector("#jugadores");
+    const jugadores = document.querySelector("#jugadores");
     jugadores.innerHTML = ``;
 
     let button = document.createElement("button");
@@ -73,23 +74,16 @@ nombreJugadores.addEventListener("click", (e) => {
 
     const inicio = document.getElementById("iniciar");
     inicio.addEventListener("click", ()=>{
-      window.location.href = '../paginas/juego.html';
+      location.href = '../paginas/juego.html';
     
-    })
+    })  
     
-    
-
-
-
-
     return;     
   }
   i = i + 1;
   nombreJugador.textContent = `Carga Jugador ${i}`;
   jug.value = "";
   cartonesJugador = [];
-
-
 });
 
 

@@ -14,4 +14,5 @@ class jugador {
     }
   }
 
-  listaCartones  = [];
+
+
