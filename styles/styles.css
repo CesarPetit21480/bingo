@@ -120,8 +120,9 @@ body {
 .bolilla {
 
   max-width: 70%;
+  padding-bottom: auto;
   margin-top: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 20%;
   margin-left: 5%;
   padding-left: 10%;
   padding-right: 10%;
@@ -139,10 +140,10 @@ body {
 
 .filaJuego {
   border: solid 1px rgb(230, 225, 225);
-  width: 40px;
-  height: 60px;
+  width: 45px;
+  height: 65px;
   text-align: center;
-  font-size: xx-large;
+  font-size: 150%;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
 }

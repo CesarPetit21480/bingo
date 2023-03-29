@@ -1,32 +1,43 @@
-
-const bolillero = document.querySelector('#bolillero');
-
-
-var listaJugadores = JSON.parse(localStorage.getItem('jugadores'));
-
-console.log('listaJugadores', listaJugadores);
+const bolillero = document.querySelector("#bolillero");
+const indInicial = [0, 9, 18];
 
 
-for (let i = 0; i < listaJugadores.length; i++){
+var listaJugadores = JSON.parse(localStorage.getItem("jugadores"));
 
-    cartones = listaJugadores[i].cartones;
+console.log("listaJugadores", listaJugadores);
 
+const cargoNumerosCarton = (nroCarton,indicesPintados,numerosCarton) => {
+  let cantNroCarton = 0;
+  for (let j = 0; j < 9; j++) {
+    for (let i = 0; i < 3; i++) {
+      const valorBuscado = indInicial[i] + j;
+      existePintado = indicesPintados.some(
+        (element) => element === valorBuscado
+      );
 
-    valor = `#j${i+1}`;
-    console.log('valor', valor);
-    const jugador = document.querySelector(valor);
+      if (!existePintado) {
+        const aux = `${nroCarton}-${valorBuscado}`;
+        const valor = document.getElementById(aux);
+        valor.textContent = numerosCarton[cantNroCarton];
+        cantNroCarton++;
+      }
+    }
+  }
+};
 
-    cartones.forEach((carton) => {      
+for (let i = 0; i < listaJugadores.length; i++) {
+  cartones = listaJugadores[i].cartones;
 
+  valor = `#j${i + 1}`;
+  console.log("valor", valor);
+  const jugador = document.querySelector(valor);
 
-        
-    console.log('carton', carton[0]);
-           
-            nroCarton = carton[0].nroCarton;
-            const li = document.createElement("li");
-            const valor = nroCarton;
-          
-            li.innerHTML += `
+  cartones.forEach((carton) => {
+    nroCarton = carton[0].nroCarton;
+    const li = document.createElement("li");
+    const valor = nroCarton;
+
+    li.innerHTML += `
           <div class="bordeJuego d-flex row mt-3 me-3">
           
           <div>
@@ -34,7 +45,7 @@ for (let i = 0; i < listaJugadores.length; i++){
           </div>
           
           <hr>
-          <div id=${nroCarton}>
+          <div id=${nroCarton} onclick= marcarNumero()>
             <div class="d-flex">
             <div id="${nroCarton}-0" class="filaJuego d-flex justify-content-center align-items-center text-white"></div>
             <div id="${nroCarton}-1" class="filaJuego d-flex justify-content-center align-items-center text-white"></div>
@@ -71,79 +82,29 @@ for (let i = 0; i < listaJugadores.length; i++){
           </div>
           </div>
           `;
-          
-            // li.addEventListener("click", () => {
-            //   seleccionarCarton(valor);
-            // })
-          
-            jugador.appendChild(li);
-          
-            // pintoNumeros en gris
-          
-            // for (let p = 0; p < 12; p++) {
-            //   do {
-            //     numerosAPintar = Math.floor(Math.random() * (27 - 1) + 1);
-            //   } while (verificoSiEstaNegro(numerosAPintar));
-          
-            //   const indice = `${nroCarton}-${numerosAPintar}`;
-            //   const valor = document.getElementById(indice);
-            //   valor.classList.add("negro");
-            // }
-          
-            // // verifico los lugares libres por decena
-          
-            // for (let j = 0; j < 9; j++) {
-            //   for (let i = 0; i < 3; i++) {
-            //     const valorBuscado = indInicial[i] + j;
-            //     existePintado = indicesPintados.some(
-            //       (element) => element === valorBuscado
-            //     );
-            //     if (existePintado) lugares[j] -= 1;
-            //   }
-            // }
-          
-            // // Genero los numero validando los lugares que tengo
-            // lugares.forEach((espacios, index) => {
-            //   const rand = index === 0 ? 10 : (index + 1) * 10;
-            //   const min = index === 0 ? 1 : rand - 10;
-            //   for (let j = 0; j < espacios; j++) {
-            //     do {
-            //       if (rand === 90)
-            //         numeroAleatorio = Math.floor(Math.random() * (rand - min + 1) + min);
-          
-            //       numeroAleatorio = Math.floor(Math.random() * (rand - min) + min);
-            //       existe = verificoSiExiste(numeroAleatorio, numerosCarton);
-            //       estaEnlaSerie = verificoSiExiste(numeroAleatorio, nrosSerie);
-            //     } while (existe);
-            //     numerosCarton.push(numeroAleatorio);
-            //     // nrosSerie.push(numeroAleatorio)
-            //   }
-            // });
-          
-            // //ordeno los numeros
-            // numerosCarton.sort((a, b) => a - b);
-            // // console.log("------------------------");
-            // // console.log("indices", indicesPintados);
-            // // console.log("lugares", indicesPintados);
-            // // console.log("nrosCarton", numerosCarton);
-            // // console.log("pintados",pintadosACubrir);
-          
-            // // llamo funcion cargar Numeros
-            // cargoNumerosCarton();
-            // // nrosSerie = [];
-          
-            // const nuevoCarton = new carton(
-            //   nroCarton,
-            //   numerosCarton,
-            //   lugares,
-            //   indicesPintados
-            // );
-            // listaCartones.push(nuevoCarton);
-          
+    // li.addEventListener("click", () => {
+    //   seleccionarCarton(valor);
+    // })
 
+    jugador.appendChild(li);
 
+    // pintoNumeros en gris
 
-        
+    indicesPintados = carton[0].indicesPintados;
+    numerosCarton = carton[0].listadoNumeros; 
+
+    indicesPintados.forEach((element) =>{
+      const indice = `${nroCarton}-${element}`;
+      const valor = document.getElementById(indice);
+      valor.classList.add("negro");
     })
-}
 
+    console.log('nros',nroCarton);
+    console.log('nros',numerosCarton);
+
+
+    cargoNumerosCarton(nroCarton,indicesPintados,numerosCarton);
+
+    
+  });
+}
