@@ -133,10 +133,6 @@ for (let i = 0; i < 6; i++) {
 </div>
 `;
 
-  // li.addEventListener("click", () => {
-  //   seleccionarCarton(valor);
-  // })
-
   cartones.appendChild(li);
 
   // pintoNumeros en gris
@@ -177,17 +173,12 @@ for (let i = 0; i < 6; i++) {
         estaEnlaSerie = verificoSiExiste(numeroAleatorio, nrosSerie);
       } while (existe);
       numerosCarton.push(numeroAleatorio);
-      // nrosSerie.push(numeroAleatorio)
+
     }
   });
 
   //ordeno los numeros
   numerosCarton.sort((a, b) => a - b);
-  // console.log("------------------------");
-  // console.log("indices", indicesPintados);
-  // console.log("lugares", indicesPintados);
-  // console.log("nrosCarton", numerosCarton);
-  // console.log("pintados",pintadosACubrir);
 
   // llamo funcion cargar Numeros
   cargoNumerosCarton();

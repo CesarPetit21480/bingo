@@ -1,4 +1,8 @@
 const bolillero = document.querySelector("#bolillero");
+const botonesBingo = document.querySelector("#botonesBingo");
+
+
+
 const indInicial = [0, 9, 18];
 
 
@@ -6,6 +10,17 @@ var listaJugadores = JSON.parse(localStorage.getItem("jugadores"));
 
 console.log("listaJugadores", listaJugadores);
 
+
+const verificoCarton = (e) => {
+ 
+ console.log(e.target.id);
+
+ const value = e.target.id;
+
+ const div = document.getElementById(value);
+ div.style.backgroundColor = "red";
+
+};
 const cargoNumerosCarton = (nroCarton,indicesPintados,numerosCarton) => {
   let cantNroCarton = 0;
   for (let j = 0; j < 9; j++) {
@@ -27,6 +42,13 @@ const cargoNumerosCarton = (nroCarton,indicesPintados,numerosCarton) => {
 
 for (let i = 0; i < listaJugadores.length; i++) {
   cartones = listaJugadores[i].cartones;
+  nombre = listaJugadores[i].nombre;  
+
+  let button = document.createElement("button");
+  button.textContent = `BINGO ${nombre}`;
+  button.classList.add("btn","btn-primary","btnBingo"); 
+  button.id = `${i}`;
+  botonesBingo.appendChild(button)
 
   valor = `#j${i + 1}`;
   console.log("valor", valor);
@@ -45,7 +67,7 @@ for (let i = 0; i < listaJugadores.length; i++) {
           </div>
           
           <hr>
-          <div id=${nroCarton} onclick= marcarNumero()>
+          <div id=${nroCarton}>
             <div class="d-flex">
             <div id="${nroCarton}-0" class="filaJuego d-flex justify-content-center align-items-center text-white"></div>
             <div id="${nroCarton}-1" class="filaJuego d-flex justify-content-center align-items-center text-white"></div>
@@ -82,9 +104,9 @@ for (let i = 0; i < listaJugadores.length; i++) {
           </div>
           </div>
           `;
-    // li.addEventListener("click", () => {
-    //   seleccionarCarton(valor);
-    // })
+    li.addEventListener("click", (e) => {
+      verificoCarton(e);
+    })
 
     jugador.appendChild(li);
 
@@ -98,13 +120,23 @@ for (let i = 0; i < listaJugadores.length; i++) {
       const valor = document.getElementById(indice);
       valor.classList.add("negro");
     })
-
-    console.log('nros',nroCarton);
-    console.log('nros',numerosCarton);
-
-
-    cargoNumerosCarton(nroCarton,indicesPintados,numerosCarton);
-
-    
+    cargoNumerosCarton(nroCarton,indicesPintados,numerosCarton);  
   });
 }
+const bolilla  = document.getElementById('nroBingo');
+setInterval(() => {
+  numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
+  bolilla.textContent = numeroAleatorio;
+}, 3000);
+
+
+
+
+
+
+
+// const parar  = document.getElementById("parar");
+
+// parar.addEventListener("click", ()=>{
+//     clearInterval(1);
+// })

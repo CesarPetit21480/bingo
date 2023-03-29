@@ -41,7 +41,6 @@
   font-weight: bold;
   color: rgb(8, 8, 8);
   text-transform: uppercase;
-
 }
 
 .tamanio {
@@ -118,15 +117,7 @@ body {
 }
 
 .bolilla {
-
-  max-width: 70%;
-  padding-bottom: auto;
-  margin-top: 10%;
-  margin-bottom: 20%;
-  margin-left: 5%;
-  padding-left: 10%;
-  padding-right: 10%;
-  margin-right: 5%;
+  height: auto;
   background: rgb(29, 78, 222);
   background: linear-gradient(
     90deg,
@@ -134,9 +125,9 @@ body {
     rgba(35, 133, 145, 1) 41%,
     rgba(0, 212, 255, 1) 91%
   );
-  opacity: 80%;
+  
+  opacity: 90%;
 }
-
 
 .filaJuego {
   border: solid 1px rgb(230, 225, 225);
@@ -159,4 +150,39 @@ body {
     rgba(0, 212, 255, 1) 100%
   );
   border: solid 3px black;
+}
+
+.circulo {
+ border-radius: 100%;
+  width: 30%;
+  border: solid 1px black;
+  text-align: center;
+  font-size: 300%;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold; 
+  background-color: white;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  padding-left: 4rem;
+  padding-right: 7rem;
+  padding-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  
+
+}
+
+.btnBingo {
+  width:auto;
+  height: 80px;
+  border-radius: 10px;
+  background-color: rgb(171, 226, 205);
+  font-size: 20px;
+  font-family: helvetica;
+  font-weight: bold;
+  color: rgb(8, 8, 8);
+  text-transform: uppercase;
+  margin-left: 2rem;
+  
+
 }
