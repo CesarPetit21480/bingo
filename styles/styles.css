@@ -125,7 +125,7 @@ body {
     rgba(35, 133, 145, 1) 41%,
     rgba(0, 212, 255, 1) 91%
   );
-  
+
   opacity: 90%;
 }
 
@@ -153,27 +153,30 @@ body {
 }
 
 .circulo {
- border-radius: 100%;
-  width: 30%;
+  overflow-x: hidden;
+  width: 20%;
   border: solid 1px black;
   text-align: center;
-  font-size: 300%;
+  font-size: 3rem;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-weight: bold; 
-  background-color: white;
+  font-weight: bold;
   margin-top: 4rem;
-  padding-top: 3rem;
-  padding-left: 4rem;
-  padding-right: 7rem;
-  padding-bottom: 3rem;
   margin-left: auto;
   margin-right: auto;
-  
-
+  width: 150px;
+  height: 150px;
+  background-color: green;
+  background: radial-gradient(at top left, #0f0 20%, #040);
+  -ms-border-radius: 150px;
+  -moz-border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -o-border-radius: 150px;
+  border-radius: 150px;
+  animation: circuloGirando 5s infinite linear;
 }
 
 .btnBingo {
-  width:auto;
+  width: auto;
   height: 80px;
   border-radius: 10px;
   background-color: rgb(171, 226, 205);
@@ -183,6 +186,16 @@ body {
   color: rgb(8, 8, 8);
   text-transform: uppercase;
   margin-left: 2rem;
-  
+}
 
+.efectoEsfera {
+  margin-top: 30px;
+  animation: Izquiera-derecha-circulo 4s infinite;
+  
+}
+
+@keyframes Izquiera-derecha-circulo {
+  from {
+    transform: translateX(-300px);
+  }
 }

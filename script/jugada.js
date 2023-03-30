@@ -1,5 +1,6 @@
 const bolillero = document.querySelector("#bolillero");
 const botonesBingo = document.querySelector("#botonesBingo");
+const contenedorJuego = document.querySelector("#contenedorJuego");
 
 const indInicial = [0, 9, 18];
 
@@ -17,8 +18,6 @@ const verificoCarton = (e) => {
 };
 
 const verificarBingo = (e) => {
-
-  e.preventDefault();
   valor = e.target.id;
   console.log(e.target.id);
   const nombre = listaJugadores[valor].nombre;
@@ -47,11 +46,12 @@ const verificarBingo = (e) => {
     }
   });
 
-  setTimeout(() => {
-    location.href = "../index.html";
-  }, 5000);
+  // contenedorJuego.innerHTML = ``;
+  // contenedorJuego.style = "height:100vh";
 
-
+  // setTimeout(() => {
+  //   location.href = "../index.html";
+  // }, 5000);
 };
 
 const cargoNumerosCarton = (nroCarton, indicesPintados, numerosCarton) => {
@@ -160,10 +160,13 @@ for (let i = 0; i < listaJugadores.length; i++) {
   });
 }
 const bolilla = document.getElementById("nroBingo");
+
+
 setInterval(() => {
+  bolilla.classList.add("efectoEsfera");
   numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
   bolilla.textContent = numeroAleatorio;
-}, 3000);
+}, 4000);
 
 // const parar  = document.getElementById("parar");
 
