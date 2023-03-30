@@ -1,27 +1,60 @@
 const bolillero = document.querySelector("#bolillero");
 const botonesBingo = document.querySelector("#botonesBingo");
 
-
-
 const indInicial = [0, 9, 18];
-
 
 var listaJugadores = JSON.parse(localStorage.getItem("jugadores"));
 
 console.log("listaJugadores", listaJugadores);
 
-
 const verificoCarton = (e) => {
- 
- console.log(e.target.id);
+  console.log(e.target.id);
 
- const value = e.target.id;
+  const value = e.target.id;
 
- const div = document.getElementById(value);
- div.style.backgroundColor = "red";
+  const div = document.getElementById(value);
+  div.style.backgroundColor = "red";
+};
+
+const verificarBingo = (e) => {
+
+  e.preventDefault();
+  valor = e.target.id;
+  console.log(e.target.id);
+  const nombre = listaJugadores[valor].nombre;
+  clearInterval(1);
+
+  Swal.fire({
+    title: `${nombre} HA CANTADO BINGO!!!!!`,
+    text: "CARGE NRO CARTON",
+    input: "text",
+    inputAttributes: {
+      autocapitalize: "off",
+    },
+    showCancelButton: true,
+    confirmButtonText: "Verificar Bingo",
+    showLoaderOnConfirm: true,
+    preConfirm: (nroCarton) => {
+      return true;
+    },
+    allowOutsideClick: () => !Swal.isLoading(),
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: `FELICIDADES ${nombre} HAS GANADO EL BINGO!!!!!!!`,
+        imageUrl: "../image/bingo.gif",
+      });
+    }
+  });
+
+  setTimeout(() => {
+    location.href = "../index.html";
+  }, 5000);
+
 
 };
-const cargoNumerosCarton = (nroCarton,indicesPintados,numerosCarton) => {
+
+const cargoNumerosCarton = (nroCarton, indicesPintados, numerosCarton) => {
   let cantNroCarton = 0;
   for (let j = 0; j < 9; j++) {
     for (let i = 0; i < 3; i++) {
@@ -42,13 +75,16 @@ const cargoNumerosCarton = (nroCarton,indicesPintados,numerosCarton) => {
 
 for (let i = 0; i < listaJugadores.length; i++) {
   cartones = listaJugadores[i].cartones;
-  nombre = listaJugadores[i].nombre;  
+  nombre = listaJugadores[i].nombre;
 
   let button = document.createElement("button");
   button.textContent = `BINGO ${nombre}`;
-  button.classList.add("btn","btn-primary","btnBingo"); 
+  button.classList.add("btn", "btn-primary", "btnBingo");
   button.id = `${i}`;
-  botonesBingo.appendChild(button)
+
+  button.addEventListener("click", (ev) => verificarBingo(ev));
+
+  botonesBingo.appendChild(button);
 
   valor = `#j${i + 1}`;
   console.log("valor", valor);
@@ -106,34 +142,28 @@ for (let i = 0; i < listaJugadores.length; i++) {
           `;
     li.addEventListener("click", (e) => {
       verificoCarton(e);
-    })
+    });
 
     jugador.appendChild(li);
 
     // pintoNumeros en gris
 
     indicesPintados = carton[0].indicesPintados;
-    numerosCarton = carton[0].listadoNumeros; 
+    numerosCarton = carton[0].listadoNumeros;
 
-    indicesPintados.forEach((element) =>{
+    indicesPintados.forEach((element) => {
       const indice = `${nroCarton}-${element}`;
       const valor = document.getElementById(indice);
       valor.classList.add("negro");
-    })
-    cargoNumerosCarton(nroCarton,indicesPintados,numerosCarton);  
+    });
+    cargoNumerosCarton(nroCarton, indicesPintados, numerosCarton);
   });
 }
-const bolilla  = document.getElementById('nroBingo');
+const bolilla = document.getElementById("nroBingo");
 setInterval(() => {
   numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
   bolilla.textContent = numeroAleatorio;
 }, 3000);
-
-
-
-
-
-
 
 // const parar  = document.getElementById("parar");
 
