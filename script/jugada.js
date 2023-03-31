@@ -1,8 +1,11 @@
 const bolillero = document.querySelector("#bolillero");
 const botonesBingo = document.querySelector("#botonesBingo");
 const contenedorJuego = document.querySelector("#contenedorJuego");
+cargoNumerosBingo();
 
 const indInicial = [0, 9, 18];
+
+console.log("numeros Bingo", numerosBingo[0].nro);
 
 var listaJugadores = JSON.parse(localStorage.getItem("jugadores"));
 
@@ -12,6 +15,8 @@ const verificoCarton = (e) => {
   console.log(e.target.id);
 
   const value = e.target.id;
+
+  console.log("numeros Bingo");
 
   const div = document.getElementById(value);
   div.style.backgroundColor = "red";
@@ -77,18 +82,20 @@ for (let i = 0; i < listaJugadores.length; i++) {
   cartones = listaJugadores[i].cartones;
   nombre = listaJugadores[i].nombre;
 
+  let div = document.createElement("div");
+  div.classList.add("d-flex", "justify-content-center", "mt-5", "mx-4");
   let button = document.createElement("button");
   button.textContent = `BINGO ${nombre}`;
   button.classList.add("btn", "btn-primary", "btnBingo");
   button.id = `${i}`;
-
   button.addEventListener("click", (ev) => verificarBingo(ev));
-
-  botonesBingo.appendChild(button);
 
   valor = `#j${i + 1}`;
   console.log("valor", valor);
   const jugador = document.querySelector(valor);
+
+  div.appendChild(button);
+  jugador.appendChild(div);
 
   cartones.forEach((carton) => {
     nroCarton = carton[0].nroCarton;
@@ -160,7 +167,6 @@ for (let i = 0; i < listaJugadores.length; i++) {
   });
 }
 const bolilla = document.getElementById("nroBingo");
-
 
 setInterval(() => {
   bolilla.classList.add("efectoEsfera");
