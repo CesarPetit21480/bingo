@@ -119,13 +119,14 @@ body {
 .bolilla {
   height: 40%;
   width: 30%;
-  background: rgb(29, 78, 222);
+  margin-top: 0px;
+  /* background: rgb(29, 78, 222);
   background: linear-gradient(
     90deg,
     rgba(29, 78, 222, 1) 0%,
     rgba(35, 133, 145, 1) 41%,
     rgba(0, 212, 255, 1) 91%
-  );
+  ); */
 
   opacity: 90%;
 }
@@ -206,5 +207,34 @@ body {
 
   margin-left: auto;
   margin-right: auto;
+
+}
+
+.tablero {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 150%;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.nroControl {  
+    border : solid 1px black;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px; 
+}
+
+.controlGeneral{
+margin-top: 10px;
+margin-left: auto;
+margin-right: auto;
+background-image: linear-gradient(to right bottom, #ffffff, #dfe5f0, #b5cee0, #85bac9, #56a5a8);
+  border-radius: 20px;
+  width: 90%;
 
 }
