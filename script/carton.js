@@ -87,7 +87,7 @@ for (let i = 0; i < 6; i++) {
   const valor = nroCarton;
 
   li.innerHTML += `
-<div class="borde d-flex row mt-3 me-3">
+<div id="g-${nroCarton}" class="borde d-flex row mt-3 me-3">
 
 <div>
   <h3 id="nro">Nro Carton: ${nroCarton}</h3>
@@ -199,6 +199,12 @@ console.log(listaCartones);
 const seleccionarCarton = (id) => {
   const btn = document.getElementById(`btn-${id}`);
   btn.disabled = true;
+  btn.style.backgroundColor = 'grey';
+const carton = document.getElementById(`g-${id}`);
+carton.classList.add("disabled");
+
+
+
 
   const cartonSeleccionado = listaCartones.filter(
     (carton) => carton.nroCarton === id

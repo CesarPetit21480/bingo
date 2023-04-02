@@ -16,6 +16,7 @@
   </head>
 
   <body>
+
     <div class="contenedor mt-5 pt-5 pb-5">
       <div class="titulo d-flex">
         <img class="tamanio" src="./image/bolas.png" alt="bolas" srcset="" />
@@ -26,13 +27,24 @@
 
         <img class="tamanio" src="./image/bolas.png" alt="bolas" srcset="" />
       </div>
-    </div>
-    <div>
+    </div>    
+ 
       <div
         id="jugadores"
-        class="tipo mt-5 pb-5 d-flex flex-column justify-content-center"
-      >
+        class="tipo mt-5 pb-5 d-flex flex-column justify-content-center" >
+      
         <h2 class="text-center">INGRESE NOMBRE Y SELECCIONE CARTONES</h2>
+        <div class="d-flex justify-content-center mt-2 mb-3">  
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="simple" value="simple" checked>
+          <label class="form-check-label colorRadionButton" for="simple">1 JUGADOR</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="multiplayer" value="multiplayer">
+          <label class="form-check-label colorRadionButton" for="multiplayer">2 JUGADORES</label>
+        </div>
+         
+        </div>  
 
         <form>
           <div class="d-flex flex-column">

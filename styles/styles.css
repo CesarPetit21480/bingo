@@ -52,6 +52,11 @@
   background-color: rgb(122, 121, 121);
 }
 
+.disabled {
+
+  background-image: linear-gradient(to right bottom, #ece9e9, #e1b5b3, #cf827c, #b64f46, #970f0f);
+}
+
 body {
   background-image: url("../image/bingo.jpg");
   background-size: cover;
@@ -236,5 +241,11 @@ margin-right: auto;
 background-image: linear-gradient(to right bottom, #ffffff, #dfe5f0, #b5cee0, #85bac9, #56a5a8);
   border-radius: 20px;
   width: 90%;
+
+}
+
+.colorRadionButton{
+
+  color: white;
 
 }
