@@ -173,7 +173,6 @@ for (let i = 0; i < 6; i++) {
         estaEnlaSerie = verificoSiExiste(numeroAleatorio, nrosSerie);
       } while (existe);
       numerosCarton.push(numeroAleatorio);
-
     }
   });
 
@@ -192,26 +191,15 @@ for (let i = 0; i < 6; i++) {
   );
   listaCartones.push(nuevoCarton);
 }
-
-console.log("------------------------------------------------");
-console.log(listaCartones);
-
 const seleccionarCarton = (id) => {
   const btn = document.getElementById(`btn-${id}`);
   btn.disabled = true;
-  btn.style.backgroundColor = 'grey';
-const carton = document.getElementById(`g-${id}`);
-carton.classList.add("disabled");
-
-
-
+  btn.style.backgroundColor = "grey";
+  const carton = document.getElementById(`g-${id}`);
+  carton.classList.add("disabled");
 
   const cartonSeleccionado = listaCartones.filter(
     (carton) => carton.nroCarton === id
   );
   cartonesJugador.push(cartonSeleccionado);
-
-  console.log('cartones',cartonesJugador);
 };
-
-

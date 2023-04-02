@@ -42,6 +42,8 @@ nombreJugadores.addEventListener("click", (e) => {
     });
     return;
   }
+
+  console.log("Carconrte cesar",cartonesJugador);
   newJugador.cartones = cartonesJugador;
   listaJugadores.push(newJugador);
 

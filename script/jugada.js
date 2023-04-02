@@ -12,8 +12,6 @@ var listaJugadores = JSON.parse(localStorage.getItem("jugadores"));
 
 console.log("listaJugadores", listaJugadores);
 
-
-
 const verificoCarton = (e) => {
   console.log(e.target.id);
 
@@ -25,9 +23,23 @@ const verificoCarton = (e) => {
   div.style.backgroundColor = "red";
 };
 
+const buscoCartonJugador = (nro, id) => {
+  const cartonesJugador = listaJugadores[id].cartones[0];
+  return (cartonSeleccionado = cartonesJugador.some(
+    (carton) => parseInt(carton.nroCarton) === parseInt(nro)
+  ));
+};
+
+const validoNumerosCarton = (nroCarton, id) => {
+  const cartonesJugador = listaJugadores[id].cartones[0];
+  const cartonSeleccionado = cartonesJugador.filter(
+    (carton) => parseInt(carton.nroCarton) === parseInt(nroCarton)
+    
+  );
+};
+
 const verificarBingo = (e) => {
   valor = e.target.id;
-  console.log(e.target.id);
   const nombre = listaJugadores[valor].nombre;
   clearInterval(1);
 
@@ -42,7 +54,12 @@ const verificarBingo = (e) => {
     confirmButtonText: "Verificar Bingo",
     showLoaderOnConfirm: true,
     preConfirm: (nroCarton) => {
-      return true;
+      const existeCarton = buscoCartonJugador(nroCarton, e.target.id);
+
+      if (existeCarton) {
+        const validoNumeroCarton = validoNumerosCarton(nroCarton, e.target.id);
+        return validoNumeroCarton;
+      }
     },
     allowOutsideClick: () => !Swal.isLoading(),
   }).then((result) => {
@@ -167,16 +184,17 @@ for (let i = 0; i < listaJugadores.length; i++) {
       valor.classList.add("negro");
     });
     cargoNumerosCarton(nroCarton, indicesPintados, numerosCarton);
-  });}
+  });
+}
 
 const tablero = document.querySelector("#tablero");
-for (let i= 0 ; i<90;i++){
-    const div = document.createElement("div");
-    div.classList.add("nroControl"); 
-    div.textContent = i + 1
-    div.id =`control-${i + 1}`;
-    tablero.appendChild(div);
-  }
+for (let i = 0; i < 90; i++) {
+  const div = document.createElement("div");
+  div.classList.add("nroControl");
+  div.textContent = i + 1;
+  div.id = `control-${i + 1}`;
+  tablero.appendChild(div);
+}
 const bolilla = document.getElementById("nroBingo");
 
 setInterval(() => {
@@ -189,10 +207,7 @@ setInterval(() => {
   setTimeout(() => {
     control.classList.add("negro");
   }, 4000);
- 
-  
 }, 4000);
-
 
 // const parar  = document.getElementById("parar");
 
