@@ -5,20 +5,10 @@ cargoNumerosBingo();
 const numerosJugados = [];
 
 const indInicial = [0, 9, 18];
-
-console.log("numeros Bingo", numerosBingo[0].nro);
-
 var listaJugadores = JSON.parse(localStorage.getItem("jugadores"));
 
-console.log("listaJugadores", listaJugadores);
-
 const verificoCarton = (e) => {
-  console.log(e.target.id);
-
   const value = e.target.id;
-
-  console.log("numeros Bingo");
-
   const div = document.getElementById(value);
   div.style.backgroundColor = "red";
 };
@@ -30,20 +20,16 @@ const buscoCartonJugador = (nro, id) => {
   ));
 };
 
-const validoNumerosCarton = (nroCarton, id) => {
+const validoNumerosCarton = async (nro, id) => {
   esBingo = true;
-
-  alert("hola");
-
   const cartonesJugador = listaJugadores[id].cartones[0];
 
   const cartonSeleccionado = cartonesJugador.filter(
-    (carton) => parseInt(carton.nroCarton) === parseInt(nroCarton)
+    (carton) => parseInt(carton.nroCarton) === parseInt(nro)
   );
 
-  const numerosCarton = cartonSeleccionado.listadoNumeros;
-
-  console.log("numeros Carton", numerosCarton);
+  const numerosCarton = cartonSeleccionado[0].listadoNumeros;
+  console.log(`cesar ${numerosCarton}`);
 
   for (let i = 0; i < numerosCarton.length; i++) {
     const nro = numerosCarton[i];
@@ -64,31 +50,25 @@ const verificoSiExiste = (numero, lista) => {
   return existe;
 };
 
-const verificarBingo = (e) => {
-  valor = e.target.id;
-  const nombre = listaJugadores[valor].nombre;
-  clearInterval(1);
-
-  Swal.fire({
+const sweetAlertBingo = async (valor) => {
+  const { value: result } = await Swal.fire({
     title: `${nombre} HA CANTADO BINGO!!!!!`,
     text: "CARGE NRO CARTON",
     input: "text",
     showCancelButton: false,
     confirmButtonText: "Guardar",
     inputValidator: (nroCarton) => {
-      const existeCarton = buscoCartonJugador(nroCarton, e.target.id);
+      const existeCarton = buscoCartonJugador(nroCarton, valor);
 
       if (!nroCarton || !existeCarton) {
         return "VERIFIQUE CARTON";
       } else {
         return undefined;
       }
-
-      return false;
     },
-  }).then((resultado) => {
-    const carton = resultado.value;
-    const validoNumeroCarton = false;//validoNumerosCarton(carton, valor);
+  });
+  if (result) {
+    const validoNumeroCarton = await validoNumerosCarton(result, valor);
 
     if (validoNumeroCarton) {
       Swal.fire({
@@ -99,11 +79,17 @@ const verificarBingo = (e) => {
       Swal.fire({
         icon: "error",
         title: "Bingo Incorrecto...",
-        text: "Se Continua el bingo...." ,
-  
+        text: "Se Continua el bingo....",
       });
     }
-  });
+  }
+};
+
+const verificarBingo = (e) => {
+  valor = e.target.id;
+  const nombre = listaJugadores[valor].nombre;
+ // clearInterval(1);
+  sweetAlertBingo(valor);
 };
 
 const cargoNumerosCarton = (nroCarton, indicesPintados, numerosCarton) => {
