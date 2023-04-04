@@ -201,5 +201,7 @@ const seleccionarCarton = (id) => {
   const cartonSeleccionado = listaCartones.filter(
     (carton) => carton.nroCarton === id
   );
-  cartonesJugador.push(cartonSeleccionado);
+  console.log("lista",listaCartones);
+  console.log("carton",cartonSeleccionado[0]);
+  cartonesJugador.push(cartonSeleccionado[0]);
 };

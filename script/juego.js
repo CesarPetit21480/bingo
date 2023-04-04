@@ -40,10 +40,8 @@ nombreJugadores.addEventListener("click", (e) => {
         popup: "animate__animated animate__fadeOutUp",
       },
     });
-    return;
-  }
+    return;  }
 
-  console.log("Carconrte cesar",cartonesJugador);
   newJugador.cartones = cartonesJugador;
   listaJugadores.push(newJugador);
 

@@ -1,6 +1,7 @@
 const bolillero = document.querySelector("#bolillero");
 const botonesBingo = document.querySelector("#botonesBingo");
 const contenedorJuego = document.querySelector("#contenedorJuego");
+const bolilla = document.getElementById("nroBingo");
 cargoNumerosBingo();
 const numerosJugados = [];
 
@@ -14,7 +15,9 @@ const verificoCarton = (e) => {
 };
 
 const buscoCartonJugador = (nro, id) => {
-  const cartonesJugador = listaJugadores[id].cartones[0];
+
+  const cartonesJugador = listaJugadores[id].cartones;
+
   return (cartonSeleccionado = cartonesJugador.some(
     (carton) => parseInt(carton.nroCarton) === parseInt(nro)
   ));
@@ -22,11 +25,12 @@ const buscoCartonJugador = (nro, id) => {
 
 const validoNumerosCarton = async (nro, id) => {
   esBingo = true;
-  const cartonesJugador = listaJugadores[id].cartones[0];
+  const cartonesJugador = listaJugadores[id].cartones;
 
   const cartonSeleccionado = cartonesJugador.filter(
     (carton) => parseInt(carton.nroCarton) === parseInt(nro)
   );
+
 
   const numerosCarton = cartonSeleccionado[0].listadoNumeros;
   console.log(`cesar ${numerosCarton}`);
@@ -49,6 +53,40 @@ const verificoSiExiste = (numero, lista) => {
   existe = lista.includes(parseInt(numero));
   return existe;
 };
+
+
+const iniciar = () => {
+  setInterval(() => {
+    bolilla.classList.add("efectoEsfera", "textoEsfera");
+  
+    do {
+      numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
+      existe = verificoSiExiste(numeroAleatorio, numerosJugados);
+    } while (existe);
+  
+    if (numerosJugados.length === 89) {
+      clearInterval(1);
+  
+      bolilla.classList.remove("efectoEsfera");
+  
+      Swal.fire({
+        title: `SE HAN JUGADO TODOS LOS NUMEROS`,
+        imageUrl: "../image/bingo.gif",
+      });
+      return;
+    }
+  
+    bolilla.textContent = numeroAleatorio;
+    numerosJugados.push(numeroAleatorio);
+    const control = document.querySelector(`#control-${numeroAleatorio}`);
+  
+    setTimeout(() => {
+      control.classList.add("negro");
+    }, 4000);
+  }, 4000);
+}
+
+
 
 const sweetAlertBingo = async (valor) => {
   const { value: result } = await Swal.fire({
@@ -81,6 +119,7 @@ const sweetAlertBingo = async (valor) => {
         title: "Bingo Incorrecto...",
         text: "Se Continua el bingo....",
       });
+      iniciar();
     }
   }
 };
@@ -88,7 +127,7 @@ const sweetAlertBingo = async (valor) => {
 const verificarBingo = (e) => {
   valor = e.target.id;
   const nombre = listaJugadores[valor].nombre;
- // clearInterval(1);
+  clearInterval(1);
   sweetAlertBingo(valor);
 };
 
@@ -131,7 +170,7 @@ for (let i = 0; i < listaJugadores.length; i++) {
   jugador.appendChild(div);
 
   cartones.forEach((carton) => {
-    nroCarton = carton[0].nroCarton;
+    nroCarton = carton.nroCarton;
     const li = document.createElement("li");
     const valor = nroCarton;
 
@@ -188,8 +227,8 @@ for (let i = 0; i < listaJugadores.length; i++) {
 
     // pintoNumeros en gris
 
-    indicesPintados = carton[0].indicesPintados;
-    numerosCarton = carton[0].listadoNumeros;
+    indicesPintados = carton.indicesPintados;
+    numerosCarton = carton.listadoNumeros;
 
     indicesPintados.forEach((element) => {
       const indice = `${nroCarton}-${element}`;
@@ -208,36 +247,9 @@ for (let i = 0; i < 90; i++) {
   div.id = `control-${i + 1}`;
   tablero.appendChild(div);
 }
-const bolilla = document.getElementById("nroBingo");
 
-setInterval(() => {
-  bolilla.classList.add("efectoEsfera", "textoEsfera");
 
-  do {
-    numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
-    existe = verificoSiExiste(numeroAleatorio, numerosJugados);
-  } while (existe);
-
-  if (numerosJugados.length === 89) {
-    clearInterval(1);
-
-    bolilla.classList.remove("efectoEsfera");
-
-    Swal.fire({
-      title: `SE HAN JUGADO TODOS LOS NUMEROS`,
-      imageUrl: "../image/bingo.gif",
-    });
-    return;
-  }
-
-  bolilla.textContent = numeroAleatorio;
-  numerosJugados.push(numeroAleatorio);
-  const control = document.querySelector(`#control-${numeroAleatorio}`);
-
-  setTimeout(() => {
-    control.classList.add("negro");
-  }, 4000);
-}, 4000);
+iniciar();
 
 // const parar  = document.getElementById("parar");
 
