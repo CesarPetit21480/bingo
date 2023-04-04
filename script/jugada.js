@@ -31,11 +31,37 @@ const buscoCartonJugador = (nro, id) => {
 };
 
 const validoNumerosCarton = (nroCarton, id) => {
+  esBingo = true;
+
+  alert("hola");
+
   const cartonesJugador = listaJugadores[id].cartones[0];
+
   const cartonSeleccionado = cartonesJugador.filter(
     (carton) => parseInt(carton.nroCarton) === parseInt(nroCarton)
-    
   );
+
+  const numerosCarton = cartonSeleccionado.listadoNumeros;
+
+  console.log("numeros Carton", numerosCarton);
+
+  for (let i = 0; i < numerosCarton.length; i++) {
+    const nro = numerosCarton[i];
+    const buscoJugados = numerosJugados.some(
+      (nroJugados) => nroJugados === nro
+    );
+
+    if (!buscoJugados) {
+      esBingo = false;
+    }
+  }
+  return esBingo;
+};
+
+const verificoSiExiste = (numero, lista) => {
+  let existe = false;
+  existe = lista.includes(parseInt(numero));
+  return existe;
 };
 
 const verificarBingo = (e) => {
@@ -47,36 +73,37 @@ const verificarBingo = (e) => {
     title: `${nombre} HA CANTADO BINGO!!!!!`,
     text: "CARGE NRO CARTON",
     input: "text",
-    inputAttributes: {
-      autocapitalize: "off",
-    },
-    showCancelButton: true,
-    confirmButtonText: "Verificar Bingo",
-    showLoaderOnConfirm: true,
-    preConfirm: (nroCarton) => {
+    showCancelButton: false,
+    confirmButtonText: "Guardar",
+    inputValidator: (nroCarton) => {
       const existeCarton = buscoCartonJugador(nroCarton, e.target.id);
 
-      if (existeCarton) {
-        const validoNumeroCarton = validoNumerosCarton(nroCarton, e.target.id);
-        return validoNumeroCarton;
+      if (!nroCarton || !existeCarton) {
+        return "VERIFIQUE CARTON";
+      } else {
+        return undefined;
       }
+
+      return false;
     },
-    allowOutsideClick: () => !Swal.isLoading(),
-  }).then((result) => {
-    if (result.isConfirmed) {
+  }).then((resultado) => {
+    const carton = resultado.value;
+    const validoNumeroCarton = false;//validoNumerosCarton(carton, valor);
+
+    if (validoNumeroCarton) {
       Swal.fire({
         title: `FELICIDADES ${nombre} HAS GANADO EL BINGO!!!!!!!`,
         imageUrl: "../image/bingo.gif",
       });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Bingo Incorrecto...",
+        text: "Se Continua el bingo...." ,
+  
+      });
     }
   });
-
-  // contenedorJuego.innerHTML = ``;
-  // contenedorJuego.style = "height:100vh";
-
-  // setTimeout(() => {
-  //   location.href = "../index.html";
-  // }, 5000);
 };
 
 const cargoNumerosCarton = (nroCarton, indicesPintados, numerosCarton) => {
@@ -198,8 +225,25 @@ for (let i = 0; i < 90; i++) {
 const bolilla = document.getElementById("nroBingo");
 
 setInterval(() => {
-  bolilla.classList.add("efectoEsfera");
-  numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
+  bolilla.classList.add("efectoEsfera", "textoEsfera");
+
+  do {
+    numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
+    existe = verificoSiExiste(numeroAleatorio, numerosJugados);
+  } while (existe);
+
+  if (numerosJugados.length === 89) {
+    clearInterval(1);
+
+    bolilla.classList.remove("efectoEsfera");
+
+    Swal.fire({
+      title: `SE HAN JUGADO TODOS LOS NUMEROS`,
+      imageUrl: "../image/bingo.gif",
+    });
+    return;
+  }
+
   bolilla.textContent = numeroAleatorio;
   numerosJugados.push(numeroAleatorio);
   const control = document.querySelector(`#control-${numeroAleatorio}`);

@@ -180,6 +180,7 @@ body {
   -o-border-radius: 150px;
   border-radius: 150px;
   animation: circuloGirando 5s infinite linear;
+  
 }
 
 .btnBingo {
@@ -197,8 +198,13 @@ body {
 }
 
 .efectoEsfera {
-  padding-top: 30px;;
+  /*padding-top: 30px;*/
   animation: Izquiera-derecha-circulo 4s infinite;
+  
+}
+
+.textoEsfera {
+  padding-top: 30px;
   
 }
 
