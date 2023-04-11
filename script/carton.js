@@ -198,10 +198,10 @@ const seleccionarCarton = (id) => {
   const carton = document.getElementById(`g-${id}`);
   carton.classList.add("disabled");
 
-  const cartonSeleccionado = listaCartones.filter(
+// usar find el filter devuele un array
+
+  const cartonSeleccionado = listaCartones.find(
     (carton) => carton.nroCarton === id
   );
-  console.log("lista",listaCartones);
-  console.log("carton",cartonSeleccionado[0]);
-  cartonesJugador.push(cartonSeleccionado[0]);
+  cartonesJugador.push(cartonSeleccionado);
 };

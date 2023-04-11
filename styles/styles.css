@@ -53,8 +53,14 @@
 }
 
 .disabled {
-
-  background-image: linear-gradient(to right bottom, #ece9e9, #e1b5b3, #cf827c, #b64f46, #970f0f);
+  background-image: linear-gradient(
+    to right bottom,
+    #ece9e9,
+    #e1b5b3,
+    #cf827c,
+    #b64f46,
+    #970f0f
+  );
 }
 
 body {
@@ -62,6 +68,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .container__li {
@@ -73,6 +80,7 @@ body {
   margin-right: 50px;
   justify-content: center;
   text-align: center;
+  list-style: none;
 }
 
 .titulo {
@@ -123,7 +131,7 @@ body {
 
 .bolilla {
   height: 40%;
-  width: 30%;
+  width: 50%;
   margin-top: 0px;
   /* background: rgb(29, 78, 222);
   background: linear-gradient(
@@ -138,16 +146,16 @@ body {
 
 .filaJuego {
   border: solid 1px rgb(230, 225, 225);
-  width: 45px;
-  height: 65px;
+  width: 60px;
+  height: 70px;
   text-align: center;
   font-size: 150%;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
 }
 .bordeJuego {
-  width: 25rem;
-  height: 270px;
+  width: 30rem;
+  height: 300px;
   /* background-color: rgb(27, 133, 133); */
   background: rgb(29, 175, 222);
   background: linear-gradient(
@@ -160,18 +168,18 @@ body {
 }
 
 .circulo {
-  overflow-x: hidden;
+  /* overflow-x: hidden;  */
   width: 20%;
   border: solid 1px black;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   background-color: green;
   background: radial-gradient(at top left, #0f0 20%, #040);
   -ms-border-radius: 150px;
@@ -179,8 +187,7 @@ body {
   -webkit-border-radius: 150px;
   -o-border-radius: 150px;
   border-radius: 150px;
-  animation: circuloGirando 5s infinite linear;
-  
+  animation: Izquiera-derecha-circulo 3.5s infinite;
 }
 
 .btnBingo {
@@ -199,26 +206,58 @@ body {
 
 .efectoEsfera {
   /*padding-top: 30px;*/
-  animation: Izquiera-derecha-circulo 4s infinite;
-  
+  animation: Izquiera-derecha-circulo 3s infinite;
 }
 
 .textoEsfera {
-  padding-top: 30px;
-  
+  padding-top: 20px;
 }
 
 @keyframes Izquiera-derecha-circulo {
   from {
-    transform: translateX(-300px);
+    transform: translateX(500px);
   }
+ 
 }
 
-.principal{
-
+.principal {
   margin-left: auto;
   margin-right: auto;
+}
 
+.panel {
+  overflow-y: scroll;
+  padding-bottom: 10px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.5);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 3rem;
+  padding-right: 3rem;  
+
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff,
+    #dcddf3,
+    #b1bee8,
+    #7ba2de,
+    #1588d2
+  );
+}
+
+.panelJugadores {
+  position: relative;
+  top: 300px;
+  height: 50%;
+
+  /* 
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff,
+    #dcddf3,
+    #b1bee8,
+    #7ba2de,
+    #1588d2
+  ); */
 }
 
 .tablero {
@@ -233,25 +272,55 @@ body {
   margin-top: 20px;
 }
 
-.nroControl {  
-    border : solid 1px black;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 10px; 
+.nroControl {
+  border: solid 1px black;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
+  font-size: small;
 }
 
-.controlGeneral{
-margin-top: 10px;
-margin-left: auto;
-margin-right: auto;
-background-image: linear-gradient(to right bottom, #ffffff, #dfe5f0, #b5cee0, #85bac9, #56a5a8);
+.controlGeneral {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(
+    to right bottom,
+    #ffffff,
+    #dfe5f0,
+    #b5cee0,
+    #85bac9,
+    #56a5a8
+  );
   border-radius: 20px;
   width: 90%;
-
 }
 
-.colorRadionButton{
-
+.colorRadionButton {
   color: white;
+}
+
+.control {
+  position: fixed;
+  top: 0;
+
+  height: auto;
+}
+
+
+.bolasDiv{
+  overflow: hidden;  
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+
 
 }
+
+.botonBolilla{  
+position: relative;
+top:150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+

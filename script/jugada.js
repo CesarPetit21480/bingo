@@ -2,6 +2,11 @@ const bolillero = document.querySelector("#bolillero");
 const botonesBingo = document.querySelector("#botonesBingo");
 const contenedorJuego = document.querySelector("#contenedorJuego");
 const bolilla = document.getElementById("nroBingo");
+const bola = document.getElementById("bola");
+bola.classList.remove("circulo");
+
+
+
 cargoNumerosBingo();
 const numerosJugados = [];
 
@@ -10,6 +15,10 @@ var listaJugadores = JSON.parse(localStorage.getItem("jugadores"));
 
 const verificoCarton = (e) => {
   const value = e.target.id;
+
+  console.log(e.target);
+
+
   const div = document.getElementById(value);
   div.style.backgroundColor = "red";
 };
@@ -33,7 +42,6 @@ const validoNumerosCarton = async (nro, id) => {
 
 
   const numerosCarton = cartonSeleccionado[0].listadoNumeros;
-  console.log(`cesar ${numerosCarton}`);
 
   for (let i = 0; i < numerosCarton.length; i++) {
     const nro = numerosCarton[i];
@@ -56,8 +64,10 @@ const verificoSiExiste = (numero, lista) => {
 
 
 const iniciar = () => {
+
+
   setInterval(() => {
-    bolilla.classList.add("efectoEsfera", "textoEsfera");
+    bolilla.classList.add("textoEsfera");
   
     do {
       numeroAleatorio = Math.floor(Math.random() * (90 - 1 + 1) + 1);
@@ -66,31 +76,29 @@ const iniciar = () => {
   
     if (numerosJugados.length === 89) {
       clearInterval(1);
-  
-      bolilla.classList.remove("efectoEsfera");
-  
       Swal.fire({
         title: `SE HAN JUGADO TODOS LOS NUMEROS`,
         imageUrl: "../image/bingo.gif",
       });
+      clearInterval(1);
       return;
     }
-  
+    bola.classList.add("circulo");
     bolilla.textContent = numeroAleatorio;
     numerosJugados.push(numeroAleatorio);
     const control = document.querySelector(`#control-${numeroAleatorio}`);
   
     setTimeout(() => {
       control.classList.add("negro");
-    }, 4000);
-  }, 4000);
+    }, 3800);
+  }, 3500);
 }
 
 
 
-const sweetAlertBingo = async (valor) => {
+const sweetAlertBingo = async (valor,p_nombre) => {
   const { value: result } = await Swal.fire({
-    title: `${nombre} HA CANTADO BINGO!!!!!`,
+    title: `${p_nombre} HA CANTADO BINGO!!!!!`,
     text: "CARGE NRO CARTON",
     input: "text",
     showCancelButton: false,
@@ -128,7 +136,7 @@ const verificarBingo = (e) => {
   valor = e.target.id;
   const nombre = listaJugadores[valor].nombre;
   clearInterval(1);
-  sweetAlertBingo(valor);
+  sweetAlertBingo(valor,nombre);
 };
 
 const cargoNumerosCarton = (nroCarton, indicesPintados, numerosCarton) => {
@@ -172,6 +180,8 @@ for (let i = 0; i < listaJugadores.length; i++) {
   cartones.forEach((carton) => {
     nroCarton = carton.nroCarton;
     const li = document.createElement("li");
+    li.style = "list-style: none";
+  
     const valor = nroCarton;
 
     li.innerHTML += `
@@ -249,7 +259,7 @@ for (let i = 0; i < 90; i++) {
 }
 
 
-iniciar();
+// iniciar();
 
 // const parar  = document.getElementById("parar");
 

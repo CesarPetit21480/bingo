@@ -16,31 +16,47 @@
   </head>
   <body>
 
-    <div class="controlGeneral">
-      <h1 class="text-center">CONTROL BOLILLAS</h1>
+   
+    <div class="control">     
+      
+      <div class="controlGeneral">
+        <h1 class="text-center">CONTROL BOLILLAS</h1>
+        <div id="tablero" class="tablero d-flex justify-content-center align-content-stretch flex-wrap""></div>          
+  
+      </div>
+      <div class="d-flex flex-column bolasDiv">
+        <div id="bola" class="circulo mb-5">
+          <div id="nroBingo"></div>          
+        </div>
+    
+      </div>
 
-      <div id="tablero" class="tablero d-flex justify-content-center align-content-stretch flex-wrap""></div>
+    
+    
+    </div>
+   
+
+
+ 
+<!-- 
+    <div
+id="contenedorJuego"
+      class="container"
+    >       
+   -->
+
+
+    <div  class="panelJugadores d-flex container-fluid">
+
+      <div id="j1" class="panel "></div>
+      <div class="botonBolilla"> <button onclick="iniciar()" class=" btn btn-primary btnBingo">iniciar Bolillero</button></div>
+      <div id="j2" class="panel "></div>
+
+    </div>
 
 
       
-    </div>
-
-    <div
-      id="contenedorJuego"
-      class="d-flex justify-content-center container principal"
-    >
-      <div id="j1"></div>
-      <div
-        id="bolillero"
-        class="bolilla mx-5 d-flex flex-column justify-content-center"
-      >
-    
-        <div class="circulo mb-5">
-          <div id="nroBingo"></div>
-        </div>
-      </div>
-      <div id="j2"></div>
-    </div>
+    <!-- </div> -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js "
