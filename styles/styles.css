@@ -217,7 +217,6 @@ body {
   from {
     transform: translateX(500px);
   }
- 
 }
 
 .principal {
@@ -232,7 +231,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding-left: 3rem;
-  padding-right: 3rem;  
+  padding-right: 3rem;
 
   background-image: linear-gradient(
     to bottom,
@@ -307,20 +306,20 @@ body {
   height: auto;
 }
 
-
-.bolasDiv{
-  overflow: hidden;  
+.bolasDiv {
+  overflow: hidden;
   width: 20%;
   margin-left: auto;
   margin-right: auto;
-
-
 }
 
-.botonBolilla{  
-position: relative;
-top:150px;
+.botonBolilla {
+  position: relative;
+  top: 150px;
+  width: 70%;
+  left: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-left: auto;
   margin-right: auto;
 }
-
