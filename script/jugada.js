@@ -178,6 +178,20 @@ const cargoNumerosCarton = (nroCarton, indicesPintados, numerosCarton) => {
   }
 };
 
+if (listaJugadores.length ===1)
+{
+  
+  const jugador = document.querySelector("#j2").classList.add("sinJ2");
+  document.querySelector("#j2").classList.remove("panel");
+  document.querySelector("#divBolas").classList.remove("bolasDiv");
+  document.querySelector("#divBolas").classList.add("bolasDivSinJ2");
+  document.querySelector("#divBolas").classList.add("bolasDivSinJ2");
+  // document.querySelector("#bola").classList.remove("circulo");
+  document.querySelector("#bola").classList.add("circuloSinj2");
+
+}
+
+
 for (let i = 0; i < listaJugadores.length; i++) {
   cartones = listaJugadores[i].cartones;
   nombre = listaJugadores[i].nombre;
