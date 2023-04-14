@@ -30,3 +30,15 @@ const cargoNumerosBingo = () => {
 };
 
 
+class score {
+    constructor( posicion,nombre,bolasJugadas) {
+        this.posicion = posicion;
+        this.nombre = nombre;
+        this.bolasJugadas = bolasJugadas
+    }
+
+
+
+
+}
+

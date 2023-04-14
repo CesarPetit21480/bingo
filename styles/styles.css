@@ -55,6 +55,17 @@ body {
   height: 100px;
 }
 
+.tamanioScore {
+  width: 150px;
+  height: 150px;
+}
+
+
+.tamanioScore:hover{
+  transform: scale(150%);
+  
+}
+
 .negro {
   background-color: rgb(122, 121, 121);
 }
@@ -189,8 +200,7 @@ body {
   animation: Izquiera-derecha-circulo 3.5s infinite;
 }
 
-.circuloSinj2 { 
- 
+.circuloSinj2 {
   animation: Izquiera-derecha-circulo-sinJ2 3.5s infinite;
 }
 
@@ -221,7 +231,6 @@ body {
   from {
     transform: translateX(300px);
   }
-
 }
 
 @keyframes Izquiera-derecha-circulo-sinJ2 {

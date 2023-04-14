@@ -1,0 +1,52 @@
+[
+    {
+        "posicion": 1,
+        "nombre": "CESAR",
+        "BolasJugadas": 25
+    },
+    {
+        "posicion": 2,
+        "nombre": "MARU",
+        "BolasJugadas": 30
+    },
+    {
+        "posicion": 3,
+        "nombre": "MATIAS",
+        "BolasJugadas":  40
+    },
+    {
+        "posicion": 4,
+        "nombre": "DANTE",
+        "BolasJugadas": 45
+    },
+    {
+        "posicion": 5,
+        "nombre": "NICO",
+        "BolasJugadas": 51
+    },
+    {
+        "posicion": 6,
+        "nombre": "EMI",
+        "BolasJugadas": 53
+    },
+    {
+        "posicion": 7,
+        "nombre": "MAURO",
+        "BolasJugadas": 62
+    },
+    {
+        "posicion": 8,
+        "nombre": "PEDRO",
+        "BolasJugadas": 70
+    },
+    {
+        "posicion": 9,
+        "nombre": "JOREGE",
+        "BolasJugadas": 75
+    },
+    {
+        "posicion": 10,
+        "nombre": "GABRIEL",
+        "BolasJugadas": 77
+    }
+]
