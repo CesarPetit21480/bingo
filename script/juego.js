@@ -7,6 +7,13 @@ if (localStorage.getItem("jugadores")) {
   localStorage.clear();
 }
 
+
+const cargarScore = ()=>{
+
+  location.href = "../paginas/score.html";
+
+}
+
 let listaJugadores = [];
 let i = 1;
 

@@ -295,6 +295,11 @@ for (let i = 0; i < 90; i++) {
   tablero.appendChild(div);
 }
 
+const volverPrincipal = ()=>{
+
+  location.href = "/";
+}
+
 // iniciar();
 
 // const parar  = document.getElementById("parar");
