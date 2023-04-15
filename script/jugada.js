@@ -35,8 +35,6 @@ const verificoCarton = (e) => {
   const value = e.target.id;
 
   const separador = value.split("-");
- 
- 
 
   const nroCartonSeleccionado = separador[0];
 
@@ -44,7 +42,7 @@ const verificoCarton = (e) => {
 
   const estapintado = verificoSiExiste(separador[1], indicesPintados);
 
-  if ((!estapintado) && (separador[1])) {
+  if (!estapintado && separador[1]) {
     const div = document.getElementById(value);
     div.style.backgroundColor = "red";
   }
@@ -88,7 +86,9 @@ const verificoSiExiste = (numero, lista) => {
 };
 
 const iniciar = () => {
-  setInterval(() => {
+  let completo = false;
+
+  const id = setInterval(() => {
     bolilla.classList.add("textoEsfera");
 
     do {
@@ -96,24 +96,31 @@ const iniciar = () => {
       existe = verificoSiExiste(numeroAleatorio, numerosJugados);
     } while (existe);
 
-    if (numerosJugados.length === 89) {
-      clearInterval(1);
+    if (numerosJugados.length === 89 && !completo) {
+      document.querySelector("#bola").classList.remove("circulo");
+      document.querySelector("#bola").classList.remove("circuloSinj2");
+      document.querySelector("#bola").style.display = "none";
+      completo = true;
+
       Swal.fire({
         title: `SE HAN JUGADO TODOS LOS NUMEROS`,
         imageUrl: "../image/bingo.gif",
       });
-      clearInterval(1);
-      return;
+      pausar(id);
     }
     bola.classList.add("circulo");
     bolilla.textContent = numeroAleatorio;
     numerosJugados.push(numeroAleatorio);
     const control = document.querySelector(`#control-${numeroAleatorio}`);
 
-    setTimeout(() => {
+     setTimeout(() => {
       control.classList.add("negro");
-    }, 3800);
+    }, 3600);
   }, 3500);
+};
+
+const pausar = (id) => {
+  clearInterval(id);
 };
 
 const sweetAlertBingo = async (valor, p_nombre) => {
@@ -178,9 +185,7 @@ const cargoNumerosCarton = (nroCarton, indicesPintados, numerosCarton) => {
   }
 };
 
-if (listaJugadores.length ===1)
-{
-  
+if (listaJugadores.length === 1) {
   const jugador = document.querySelector("#j2").classList.add("sinJ2");
   document.querySelector("#j2").classList.remove("panel");
   document.querySelector("#divBolas").classList.remove("bolasDiv");
@@ -188,9 +193,7 @@ if (listaJugadores.length ===1)
   document.querySelector("#divBolas").classList.add("bolasDivSinJ2");
   // document.querySelector("#bola").classList.remove("circulo");
   document.querySelector("#bola").classList.add("circuloSinj2");
-
 }
-
 
 for (let i = 0; i < listaJugadores.length; i++) {
   cartones = listaJugadores[i].cartones;
